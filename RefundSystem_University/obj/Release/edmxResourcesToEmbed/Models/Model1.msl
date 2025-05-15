@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RefundModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="ApplicationApprovalStatus">
+      <EntityTypeMapping TypeName="RefundModel.ApplicationApprovalStatu">
+        <MappingFragment StoreEntitySet="ApplicationApprovalStatus">
+          <ScalarProperty Name="NonApprovalReason" ColumnName="NonApprovalReason" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Approved" ColumnName="Approved" />
+          <ScalarProperty Name="AuthorizedSignatoryId" ColumnName="AuthorizedSignatoryId" />
+          <ScalarProperty Name="RefundApplicationId" ColumnName="RefundApplicationId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AuthorizedSignatories">
+      <EntityTypeMapping TypeName="RefundModel.AuthorizedSignatory">
+        <MappingFragment StoreEntitySet="AuthorizedSignatory">
+          <ScalarProperty Name="SignaturePath" ColumnName="SignaturePath" />
+          <ScalarProperty Name="OrderForCancellationTypeOnRegistrationDay" ColumnName="OrderForCancellationTypeOnRegistrationDay" />
+          <ScalarProperty Name="OrderForCancellationTypeNotOnRegistrationDay" ColumnName="OrderForCancellationTypeNotOnRegistrationDay" />
+          <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="JobType" ColumnName="JobType" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CancellationTypes">
+      <EntityTypeMapping TypeName="RefundModel.CancellationType">
+        <MappingFragment StoreEntitySet="CancellationType">
+          <ScalarProperty Name="OnRegistrationDay" ColumnName="OnRegistrationDay" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="RefundModel.Department">
+        <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DepartmentManagers">
+      <EntityTypeMapping TypeName="RefundModel.DepartmentManager">
+        <MappingFragment StoreEntitySet="DepartmentManager">
+          <ScalarProperty Name="AuthorizedSignatoryId" ColumnName="AuthorizedSignatoryId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EntitiesTable">
+      <EntityTypeMapping TypeName="RefundModel.Entity">
+        <MappingFragment StoreEntitySet="Entity">
+          <ScalarProperty Name="LogoPath" ColumnName="LogoPath" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Forms">
+      <EntityTypeMapping TypeName="RefundModel.Form">
+        <MappingFragment StoreEntitySet="Form">
+          <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+          <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+          <ScalarProperty Name="CancellationTypeId" ColumnName="CancellationTypeId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProcessManagers">
+      <EntityTypeMapping TypeName="RefundModel.ProcessManager">
+        <MappingFragment StoreEntitySet="ProcessManager">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RefundApplicationFiles">
+      <EntityTypeMapping TypeName="RefundModel.RefundApplicationFile">
+        <MappingFragment StoreEntitySet="RefundApplicationFile">
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="RefundApplicationId" ColumnName="RefundApplicationId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="RefundModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RefundApplications">
+      <EntityTypeMapping TypeName="RefundModel.RefundApplication">
+        <MappingFragment StoreEntitySet="RefundApplication">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="AdditionalCredit" ColumnName="AdditionalCredit" />
+          <ScalarProperty Name="RefundAmount" ColumnName="RefundAmount" />
+          <ScalarProperty Name="FullCancellation" ColumnName="FullCancellation" />
+          <ScalarProperty Name="CancellationReason" ColumnName="CancellationReason" />
+          <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="BranchNumber" ColumnName="BranchNumber" />
+          <ScalarProperty Name="BankNumber" ColumnName="BankNumber" />
+          <ScalarProperty Name="AccountOwnerName" ColumnName="AccountOwnerName" />
+          <ScalarProperty Name="RefundMethod" ColumnName="RefundMethod" />
+          <ScalarProperty Name="CreditLastDigits" ColumnName="CreditLastDigits" />
+          <ScalarProperty Name="CustomerIdNumber" ColumnName="CustomerIdNumber" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="ProcessManagerId" ColumnName="ProcessManagerId" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FormId" ColumnName="FormId" />
+          <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AuthorizedSignatoryEntity" TypeName="RefundModel.AuthorizedSignatoryEntity" StoreEntitySet="AuthorizedSignatoryEntity">
+      <EndProperty Name="Entity">
+        <ScalarProperty Name="Id" ColumnName="EntityId" />
+      </EndProperty>
+      <EndProperty Name="AuthorizedSignatory">
+        <ScalarProperty Name="Id" ColumnName="AuthorizedSignatoryId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="ApprovedRefundApplicationEmailCcRecipients">
+      <EntityTypeMapping TypeName="RefundModel.ApprovedRefundApplicationEmailCcRecipient">
+        <MappingFragment StoreEntitySet="ApprovedRefundApplicationEmailCcRecipient">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

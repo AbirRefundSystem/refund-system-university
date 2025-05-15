@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RefundModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ApplicationApprovalStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RefundApplicationId" Type="int" Nullable="false" />
+    <Property Name="AuthorizedSignatoryId" Type="int" Nullable="false" />
+    <Property Name="Approved" Type="bit" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="NonApprovalReason" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="ApprovedRefundApplicationEmailCcRecipient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AuthorizedSignatory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="35" Nullable="false" />
+    <Property Name="JobType" Type="nvarchar" MaxLength="35" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="CellPhone" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="OrderForCancellationTypeNotOnRegistrationDay" Type="tinyint" />
+    <Property Name="OrderForCancellationTypeOnRegistrationDay" Type="tinyint" />
+    <Property Name="SignaturePath" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AuthorizedSignatoryEntity">
+    <Key>
+      <PropertyRef Name="AuthorizedSignatoryId" />
+      <PropertyRef Name="EntityId" />
+    </Key>
+    <Property Name="AuthorizedSignatoryId" Type="int" Nullable="false" />
+    <Property Name="EntityId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CancellationType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="35" Nullable="false" />
+    <Property Name="OnRegistrationDay" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="35" Nullable="false" />
+    <Property Name="EntityId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DepartmentManager">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="AuthorizedSignatoryId" Type="int" />
+  </EntityType>
+  <EntityType Name="Entity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="LogoPath" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Form">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="35" Nullable="false" />
+    <Property Name="CancellationTypeId" Type="int" Nullable="false" />
+    <Property Name="EntityId" Type="int" Nullable="false" />
+    <Property Name="PaymentMethod" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProcessManager">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RefundApplication">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EntityId" Type="int" Nullable="false" />
+    <Property Name="FormId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="DepartmentId" Type="int" Nullable="false" />
+    <Property Name="ProcessManagerId" Type="int" Nullable="false" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="CustomerIdNumber" Type="nvarchar" MaxLength="9" />
+    <Property Name="CreditLastDigits" Type="nvarchar" MaxLength="4" />
+    <Property Name="RefundMethod" Type="tinyint" />
+    <Property Name="AccountOwnerName" Type="nvarchar" MaxLength="60" />
+    <Property Name="BankNumber" Type="nvarchar" MaxLength="35" />
+    <Property Name="BranchNumber" Type="nvarchar" MaxLength="30" />
+    <Property Name="AccountNumber" Type="nvarchar" MaxLength="35" />
+    <Property Name="TransactionDate" Type="date" Nullable="false" />
+    <Property Name="TransactionAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CancellationReason" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="FullCancellation" Type="bit" Nullable="false" />
+    <Property Name="RefundAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="AdditionalCredit" Type="bit" Nullable="false" />
+    <Property Name="Details" Type="nvarchar" MaxLength="500" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
+    <Property Name="Date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RefundApplicationFile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RefundApplicationId" Type="int" Nullable="false" />
+    <Property Name="FilePath" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="35" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="35" Nullable="false" />
+    <Property Name="IsAdmin" Type="bit" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ApplicationApprovalStatus_AuthorizedSignatory">
+    <End Role="AuthorizedSignatory" Type="Self.AuthorizedSignatory" Multiplicity="1" />
+    <End Role="ApplicationApprovalStatus" Type="Self.ApplicationApprovalStatus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AuthorizedSignatory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ApplicationApprovalStatus">
+        <PropertyRef Name="AuthorizedSignatoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ApplicationApprovalStatus_RefundApplication">
+    <End Role="RefundApplication" Type="Self.RefundApplication" Multiplicity="1" />
+    <End Role="ApplicationApprovalStatus" Type="Self.ApplicationApprovalStatus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RefundApplication">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ApplicationApprovalStatus">
+        <PropertyRef Name="RefundApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AuthorizedSignatory_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="AuthorizedSignatory" Type="Self.AuthorizedSignatory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AuthorizedSignatory">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AuthorizedSignatoryEntity_AuthorizedSignatory">
+    <End Role="AuthorizedSignatory" Type="Self.AuthorizedSignatory" Multiplicity="1" />
+    <End Role="AuthorizedSignatoryEntity" Type="Self.AuthorizedSignatoryEntity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AuthorizedSignatory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AuthorizedSignatoryEntity">
+        <PropertyRef Name="AuthorizedSignatoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AuthorizedSignatoryEntity_Entity">
+    <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
+    <End Role="AuthorizedSignatoryEntity" Type="Self.AuthorizedSignatoryEntity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AuthorizedSignatoryEntity">
+        <PropertyRef Name="EntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Department_Entity">
+    <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="EntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepartmentManager_AuthorizedSignatory">
+    <End Role="AuthorizedSignatory" Type="Self.AuthorizedSignatory" Multiplicity="0..1" />
+    <End Role="DepartmentManager" Type="Self.DepartmentManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AuthorizedSignatory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DepartmentManager">
+        <PropertyRef Name="AuthorizedSignatoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepartmentManager_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="DepartmentManager" Type="Self.DepartmentManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DepartmentManager">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepartmentManager_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="DepartmentManager" Type="Self.DepartmentManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DepartmentManager">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Form_CancellationType">
+    <End Role="CancellationType" Type="Self.CancellationType" Multiplicity="1" />
+    <End Role="Form" Type="Self.Form" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CancellationType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Form">
+        <PropertyRef Name="CancellationTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Form_Entity">
+    <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
+    <End Role="Form" Type="Self.Form" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Form">
+        <PropertyRef Name="EntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProcessManager_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="ProcessManager" Type="Self.ProcessManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProcessManager">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProcessManager_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="ProcessManager" Type="Self.ProcessManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProcessManager">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RefundApplication_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="RefundApplication" Type="Self.RefundApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RefundApplication">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RefundApplication_Entity">
+    <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
+    <End Role="RefundApplication" Type="Self.RefundApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RefundApplication">
+        <PropertyRef Name="EntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RefundApplication_Form">
+    <End Role="Form" Type="Self.Form" Multiplicity="1" />
+    <End Role="RefundApplication" Type="Self.RefundApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Form">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RefundApplication">
+        <PropertyRef Name="FormId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RefundApplication_ProcessManager">
+    <End Role="ProcessManager" Type="Self.ProcessManager" Multiplicity="1" />
+    <End Role="RefundApplication" Type="Self.RefundApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProcessManager">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RefundApplication">
+        <PropertyRef Name="ProcessManagerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RefundApplication_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="RefundApplication" Type="Self.RefundApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RefundApplication">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RefundApplicationFile_RefundApplicationFile">
+    <End Role="RefundApplication" Type="Self.RefundApplication" Multiplicity="1" />
+    <End Role="RefundApplicationFile" Type="Self.RefundApplicationFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RefundApplication">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RefundApplicationFile">
+        <PropertyRef Name="RefundApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RefundModelStoreContainer">
+    <EntitySet Name="ApplicationApprovalStatus" EntityType="Self.ApplicationApprovalStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ApprovedRefundApplicationEmailCcRecipient" EntityType="Self.ApprovedRefundApplicationEmailCcRecipient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AuthorizedSignatory" EntityType="Self.AuthorizedSignatory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AuthorizedSignatoryEntity" EntityType="Self.AuthorizedSignatoryEntity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CancellationType" EntityType="Self.CancellationType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DepartmentManager" EntityType="Self.DepartmentManager" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Entity" EntityType="Self.Entity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Form" EntityType="Self.Form" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProcessManager" EntityType="Self.ProcessManager" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RefundApplication" EntityType="Self.RefundApplication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RefundApplicationFile" EntityType="Self.RefundApplicationFile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ApplicationApprovalStatus_AuthorizedSignatory" Association="Self.FK_ApplicationApprovalStatus_AuthorizedSignatory">
+      <End Role="AuthorizedSignatory" EntitySet="AuthorizedSignatory" />
+      <End Role="ApplicationApprovalStatus" EntitySet="ApplicationApprovalStatus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApplicationApprovalStatus_RefundApplication" Association="Self.FK_ApplicationApprovalStatus_RefundApplication">
+      <End Role="RefundApplication" EntitySet="RefundApplication" />
+      <End Role="ApplicationApprovalStatus" EntitySet="ApplicationApprovalStatus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AuthorizedSignatory_User" Association="Self.FK_AuthorizedSignatory_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="AuthorizedSignatory" EntitySet="AuthorizedSignatory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AuthorizedSignatoryEntity_AuthorizedSignatory" Association="Self.FK_AuthorizedSignatoryEntity_AuthorizedSignatory">
+      <End Role="AuthorizedSignatory" EntitySet="AuthorizedSignatory" />
+      <End Role="AuthorizedSignatoryEntity" EntitySet="AuthorizedSignatoryEntity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AuthorizedSignatoryEntity_Entity" Association="Self.FK_AuthorizedSignatoryEntity_Entity">
+      <End Role="Entity" EntitySet="Entity" />
+      <End Role="AuthorizedSignatoryEntity" EntitySet="AuthorizedSignatoryEntity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Department_Entity" Association="Self.FK_Department_Entity">
+      <End Role="Entity" EntitySet="Entity" />
+      <End Role="Department" EntitySet="Department" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepartmentManager_AuthorizedSignatory" Association="Self.FK_DepartmentManager_AuthorizedSignatory">
+      <End Role="AuthorizedSignatory" EntitySet="AuthorizedSignatory" />
+      <End Role="DepartmentManager" EntitySet="DepartmentManager" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepartmentManager_Department" Association="Self.FK_DepartmentManager_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="DepartmentManager" EntitySet="DepartmentManager" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepartmentManager_User" Association="Self.FK_DepartmentManager_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="DepartmentManager" EntitySet="DepartmentManager" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Form_CancellationType" Association="Self.FK_Form_CancellationType">
+      <End Role="CancellationType" EntitySet="CancellationType" />
+      <End Role="Form" EntitySet="Form" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Form_Entity" Association="Self.FK_Form_Entity">
+      <End Role="Entity" EntitySet="Entity" />
+      <End Role="Form" EntitySet="Form" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProcessManager_Department" Association="Self.FK_ProcessManager_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="ProcessManager" EntitySet="ProcessManager" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProcessManager_User" Association="Self.FK_ProcessManager_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="ProcessManager" EntitySet="ProcessManager" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RefundApplication_Department" Association="Self.FK_RefundApplication_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="RefundApplication" EntitySet="RefundApplication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RefundApplication_Entity" Association="Self.FK_RefundApplication_Entity">
+      <End Role="Entity" EntitySet="Entity" />
+      <End Role="RefundApplication" EntitySet="RefundApplication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RefundApplication_Form" Association="Self.FK_RefundApplication_Form">
+      <End Role="Form" EntitySet="Form" />
+      <End Role="RefundApplication" EntitySet="RefundApplication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RefundApplication_ProcessManager" Association="Self.FK_RefundApplication_ProcessManager">
+      <End Role="ProcessManager" EntitySet="ProcessManager" />
+      <End Role="RefundApplication" EntitySet="RefundApplication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RefundApplication_User" Association="Self.FK_RefundApplication_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="RefundApplication" EntitySet="RefundApplication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RefundApplicationFile_RefundApplicationFile" Association="Self.FK_RefundApplicationFile_RefundApplicationFile">
+      <End Role="RefundApplication" EntitySet="RefundApplication" />
+      <End Role="RefundApplicationFile" EntitySet="RefundApplicationFile" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
